@@ -9,38 +9,39 @@ Map::Map()
     adjList.resize(13);
 
     // add all cities
-    AddCity(Seattle, Chicago, 2097);
+    AddCity(Seattle, SanFrancisco, 807);
+    AddCity(Seattle, Denver, 1331);
+    AddCity(SanFrancisco, LosAngeles, 381);
+    AddCity(LosAngeles, Denver, 1015);
+    AddCity(Denver, Chicago, 1003);
+    AddCity(Denver, SanFrancisco, 1267);
+    AddCity(Chicago, Seattle, 2097);
     AddCity(Chicago, Boston, 983);
     AddCity(Boston, NewYork, 214);
     AddCity(NewYork, Chicago, 787);
-    AddCity(Chicago, Denver, 1003);
-    AddCity(Denver, Seattle, 1331);
-    AddCity(Seattle, SanFrancisco, 807);
-    AddCity(Chicago, KansasCity, 533);
-    AddCity(KansasCity, Denver, 599);
-    AddCity(KansasCity, LosAngeles, 1663);
-    AddCity(KansasCity, Dallas, 496);
-    AddCity(KansasCity, Atlanta, 864);
-    AddCity(KansasCity, NewYork, 1260);
-    AddCity(SanFrancisco, Denver, 1267);
-    AddCity(SanFrancisco, LosAngeles, 381);
-    AddCity(LosAngeles, Denver, 1015);
-    AddCity(LosAngeles, Dallas, 1435);
-    AddCity(Atlanta, Dallas, 781);
-    AddCity(Atlanta, NewYork, 888);
-    AddCity(Atlanta, Houston, 810);
+    AddCity(NewYork, Atlanta, 888);
     AddCity(Atlanta, Miami, 661);
     AddCity(Miami, Houston, 1187);
+    AddCity(Houston, Atlanta, 810);
     AddCity(Houston, Dallas, 239);
+    AddCity(Dallas, LosAngeles , 1435);
+    AddCity(Dallas, Atlanta, 781);
+    AddCity(Dallas, KansasCity, 496);
+    AddCity(KansasCity, LosAngeles, 1663);
+    AddCity(KansasCity, Denver, 599);
+    AddCity(KansasCity, Chicago, 533);
+    AddCity(KansasCity, NewYork, 1260);
+    AddCity(KansasCity, Atlanta, 864);
+
 }
 
-// adds a SINGLE pair of cities and the distance between them. must be repeated for each edge
+// adds a SINGLE city too the list and one directed edge to another city. must be repeated for each edge
 void Map::AddCity(int nameCityOne, int nameCityTwo, int distance)
 {
     // add the first city and its distance too the second
     adjList[nameCityOne].push_back({ nameCityTwo, distance });
     // add the second city and its distance too the first
-    adjList[nameCityTwo].push_back({ nameCityOne, distance });
+    //adjList[nameCityTwo].push_back({ nameCityOne, distance });
 }
 
 // passed a number to decode will return the correct name for that number
@@ -107,6 +108,7 @@ void Map::DisplayMap()
     }
 }
 
+/* Comment blocked due too an error: "MapClass.cpp(132,34): error C2955: 'std::pair': use of class template requires template argument list"
 // function to handle the recursive DFS traversal of a graph stored in an Adjacency List structure.
 // note for future reference: only the visited, currCity and result parameters are necessary for a correct DFS traversal. Everything else works as a helper to the other parts of this assignment
 void Map::dfsRecursive(vector<bool>& visited, int currCity, vector<int>& result, vector<pair<int, int>>& discoveryEdges) {
@@ -192,3 +194,4 @@ void Map::DFS() {
             cout << ", ";
     }
 }
+*/

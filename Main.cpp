@@ -15,10 +15,10 @@ int main()
         << "It then displays all of the edges' types per traversal and the\n"
         << "final ordering per traversal.\n\n";
     Map UnitedStates;
-    //UnitedStates.DisplayMap();
+    UnitedStates.DisplayMap();
     cout << "______________________________________________________\n";
     cout << "\nPart A: DFS Traversal\n";
-    UnitedStates.DFS();
+    //UnitedStates.DFS();
 
     cout << "\n______________________________________________________\n";
     cout << "\nPart B: BFS Traversal\n";

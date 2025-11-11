@@ -54,8 +54,8 @@ public:
 
     // function to handle the recursive DFS traversal of a graph stored in an Adjacency List structure.
     //void dfsRecursive(vector<bool>& visited, int currCity, vector<int>& result, vector<pair<int, int>>& discoveryEdges);
-    void dfsRecursive(vector<bool>& visited, int currCity, vector<int>& result, vector<pair<int, int>>& discoveryEdges);
+    //void dfsRecursive(vector<bool>& visited, int currCity, vector<int>& result, vector<pair<int, int>>& discoveryEdges);
 
     // function to perform a DFS traversal
-    void DFS();
+    //void DFS();
 };
