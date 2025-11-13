@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Name: Aaron, Dakota, and Cindy
+ * Name: Aaron, Dakota, and Cynthia
  * Assignment: Assignment 10
  * Description:
  * 	This program implements graph using the Adjacency List and Adjacency Matrix
@@ -7,6 +7,7 @@
  *
  * ****************************************************************************/
 #include "Header.h"
+#include "BFSdigraph.hpp"
 
 int main()
 {
@@ -22,9 +23,12 @@ int main()
 
     cout << "\n______________________________________________________\n";
     cout << "\nPart B: BFS Traversal\n";
-    // call BFS search of the directed map below
-    //BFS();
+    BFSdigraph adjMatrix;
+
+    // Perform a BFS traversal on the adjacency matrix starting at Denver (4)
+    adjMatrix.BFS_algorithm(4);
 
 
     return 0;
+
 }
