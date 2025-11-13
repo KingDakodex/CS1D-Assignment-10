@@ -1,5 +1,5 @@
-#ifndef H_BFSgraph
-#define H_BFSgraph
+#ifndef H_BFSdigraph
+#define H_BFSdigraph
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,22 +7,22 @@
 #include <limits>
 using namespace std;
 
-class BFSgraph {
-private:
+class BFSdigraph {
+private: // digraph adjacency matrix (with a 2D vector)
   vector<vector<int>> weightedAdjMatrix {
-      {0, 2097, 0, 807, 1331, 0, 0, 0, 0, 0, 0, 0},      // Seattle       (0)
-      {2097, 0, 983, 0, 1003, 787, 533, 0, 0, 0, 0, 0},  // Chicago       (1)
-      {0, 983, 0, 0, 0, 214, 0, 0, 0, 0, 0, 0},          // Boston        (2)
-      {807, 0, 0, 0, 1267, 0, 0, 381, 0, 0, 0, 0},       // San Francisco (3)
-      {1331, 1003, 0, 1267, 0, 0, 599, 1015, 0, 0, 0, 0},// Denver        (4)
-      {0, 787, 214, 0, 0, 0, 1260, 0, 0, 888, 0, 0},     // New York      (5)
-      {0, 533, 0, 0, 599, 1260, 0, 1663, 496, 864, 0, 0},// Kansas City   (6)
-      {0, 0, 0, 381, 1015, 0, 1663, 0, 1435, 0, 0, 0},   // Los Angeles   (7)
-      {0, 0, 0, 0, 0, 0, 496, 1435, 0, 781, 239, 0},     // Dallas        (8)
-      {0, 0, 0, 0, 0, 888, 864, 0, 781, 0, 810, 661},    // Atlanta       (9)
-      {0, 0, 0, 0, 0, 0, 0, 0, 239, 810, 0, 1187},       // Houston       (10)
-      {0, 0, 0, 0, 0, 0, 0, 0, 0, 661, 1187, 0}          // Miami         (11)
-  };// 0  1  2  3  4  5  6  7  8   9    10   11
+      {0, 0, 0, 807, 1331, 0, 0, 0, 0, 0, 0, 0},       // Seattle       (0)
+      {2097, 0, 983, 0, 0, 0, 0, 0, 0, 0, 0, 0},       // Chicago       (1)
+      {0, 0, 0, 0, 0, 214, 0, 0, 0, 0, 0, 0},          // Boston        (2)
+      {0, 0, 0, 0, 0, 0, 0, 381, 0, 0, 0, 0},          // San Francisco (3)
+      {0, 1003, 0, 1267, 0, 0, 0, 0, 0, 0, 0, 0},      // Denver        (4)
+      {0, 787, 0, 0, 0, 0, 0, 0, 0, 888, 0, 0},        // New York      (5)
+      {0, 533, 0, 0, 599, 1260, 0, 1663, 0, 864, 0, 0},// Kansas City   (6)
+      {0, 0, 0, 0, 1015, 0, 0, 0, 0, 0, 0, 0},         // Los Angeles   (7)
+      {0, 0, 0, 0, 0, 0, 496, 1435, 0, 781, 0, 0},     // Dallas        (8)
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 661},          // Atlanta       (9)
+      {0, 0, 0, 0, 0, 0, 0, 0, 239, 810, 0, 0},        // Houston       (10)
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1187, 0}          // Miami         (11)
+  };// 0  1  2  3  4  5  6  7  8  9   10  11
 
   vector<string> vertices {"Seattle", "Chicago", "Boston", "San Francisco", "Denver",
                            "New York", "Kansas City", "Los Angeles", "Dallas", "Atlanta",
@@ -91,10 +91,10 @@ public:
         BFScities.push_back(vertices[neighborVertex]);
       }
 
-      // Check for cross edges
+      // Check for back edges
       for (int i = 0; i < int(weightedAdjMatrix[currentVertex].size()); i++) {
         if (weightedAdjMatrix[currentVertex][i] != 0 && visited[i] && i != start) {
-          // Only print cross edge if it's not to a neighbor we just added
+          // Only print back edge if it's not to a neighbor we just added
           bool isNewNeighbor = false;
 
           for (const auto& neighbor : neighbors) {
@@ -102,16 +102,17 @@ public:
               isNewNeighbor = true;
               break;
             }
-          }// if not a new neighbor,
+          }
+          // if not a new neighbor,
           if (!isNewNeighbor) {
-            cout << "Cross edge: ";
+            cout << "Back edge: ";
             cout << "Origin -> " << vertices[currentVertex] << " , ";
             cout << vertices[i] << " <- Destination\n\n";
           }
         }
       }
     }
-    cout << "\nTotal Distance Traveled (Via Discovery Edges): " << totalDistance << " miles\n";
+    cout << "\nTotal Distance Traveled: " << totalDistance << " miles\n";
 
     // Displaying the BFS traversal order of cities
     for (int i = 0; i < int(BFScities.size()); i++) {
